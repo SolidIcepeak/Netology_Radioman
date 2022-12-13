@@ -1,15 +1,38 @@
 package ru.netology.radio;
 
 public class Radio {
-    private int minVolume = 0;
-    private int maxVolume = 10;
+    private final int minVolume = 0;
+    private final int maxVolume = 100;
     private int currentVolume = minVolume;
-    private int minChanel = 0;
-    private int maxChanel = 9;
-    private int currentChanel = minChanel;
+    private final int minChanelNumber = 0;
+    private int maxChanelNumber;
+    private int currentChanel = minChanelNumber;
+
+    public Radio() {
+        maxChanelNumber = 9;
+    }
+    public Radio(int chanelAmount) {
+        if (chanelAmount <= minChanelNumber) {
+            maxChanelNumber = minChanelNumber;
+        } else {
+            maxChanelNumber = chanelAmount - 1;
+        }
+    }
+
+
 
     public int getCurrentChanel() {
         return currentChanel;
+
+    }
+
+    public int getCurrentMinChanel() {
+        return minChanelNumber;
+
+    }
+
+    public int getCurrentMaxChanel() {
+        return maxChanelNumber;
 
     }
 
@@ -18,28 +41,30 @@ public class Radio {
 
     }
 
+
     public void nextChannel() {
-        if (currentChanel == maxChanel) {
-            currentChanel = minChanel;
+        if (currentChanel == maxChanelNumber) {
+            currentChanel = minChanelNumber;
         } else {
             currentChanel++;
         }
     }
 
     public void prevChannel() {
-        if (currentChanel == minChanel) {
-            currentChanel = maxChanel;
+        if (currentChanel == minChanelNumber) {
+            currentChanel = maxChanelNumber;
         } else {
             currentChanel--;
         }
     }
 
     public void setChanel(int chanel) {
-        if (chanel >= minChanel && chanel <= maxChanel) {
+        if (chanel >= minChanelNumber && chanel <= maxChanelNumber) {
             currentChanel = chanel;
         }
 
     }
+
     public void setVolume(int volume) {
         if (volume >= minVolume && volume <= maxVolume) {
             currentVolume = volume;
