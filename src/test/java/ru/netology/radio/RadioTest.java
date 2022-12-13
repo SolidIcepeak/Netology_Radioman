@@ -1,67 +1,51 @@
 package ru.netology.radio;
 
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 class RadioTest {
-    Radio service = new Radio();
-
-    @Test
-    public void constructorPositiveTest() {
-        Radio service = new Radio(100);
-        Assertions.assertEquals(99, service.getCurrentMaxChanel());
-        Assertions.assertEquals(0, service.getCurrentMinChanel());
-        Assertions.assertEquals(0, service.getCurrentChanel());
-    }
-
-    @Test
-    public void constructorNegativeTest() {
-        Radio service = new Radio(-100);
-        Assertions.assertEquals(0, service.getCurrentMaxChanel());
-        Assertions.assertEquals(0, service.getCurrentMinChanel());
-        Assertions.assertEquals(0, service.getCurrentChanel());
-    }
-
 
     @Test
     public void testNextChannel() {
-        service.nextChannel();
+        var radio = new Radio();
+        radio.nextChannel();
         int expected = 1;
-        int actual = service.getCurrentChanel();
+        int actual = radio.getCurrentChanel();
         assertEquals(expected, actual);
 
     }
 
     @Test
     public void testNextChannelMax() {
-        service.setChanel(9);
-        service.nextChannel();
+        var radio = new Radio();
+        radio.setChanel(9);
+        radio.nextChannel();
         int expected = 0;
-        int actual = service.getCurrentChanel();
+        int actual = radio.getCurrentChanel();
         assertEquals(expected, actual);
 
     }
 
     @Test
     public void testPrevChannel() {
-        service.setChanel(1);
-        service.prevChannel();
+        var radio = new Radio();
+        radio.setChanel(1);
+        radio.prevChannel();
         int expected = 0;
-        int actual = service.getCurrentChanel();
+        int actual = radio.getCurrentChanel();
         assertEquals(expected, actual);
 
 
     }
-
     @Test
     public void testPrevChannelMin() {
-        service.prevChannel();
+        var radio = new Radio();
+        radio.prevChannel();
         int expected = 9;
-        int actual = service.getCurrentChanel();
+        int actual = radio.getCurrentChanel();
         assertEquals(expected, actual);
 
 
@@ -69,77 +53,82 @@ class RadioTest {
 
     @Test
     void testSetChanel() {
-        service.setChanel(7);
+        var radio = new Radio();
+        radio.setChanel(7);
         int expected = 7;
-        int actual = service.getCurrentChanel();
+        int actual = radio.getCurrentChanel();
         assertEquals(expected, actual);
     }
 
     @Test
     void testSetChanelMoreMax() {
-        service.setChanel(123);
+        var radio = new Radio();
+        radio.setChanel(123);
         int expected = 0;
-        int actual = service.getCurrentChanel();
+        int actual = radio.getCurrentChanel();
         assertEquals(expected, actual);
     }
-
     @Test
     void testSetChanelLessMin() {
-        service.setChanel(-123);
+        var radio = new Radio();
+        radio.setChanel(-123);
         int expected = 0;
-        int actual = service.getCurrentChanel();
+        int actual = radio.getCurrentChanel();
         assertEquals(expected, actual);
     }
 
     @Test
     void testPlusVolume() {
-        service.plusVolume();
+        var radio = new Radio();
+        radio.plusVolume();
         int expected = 1;
-        int actual = service.getCurrentVolume();
+        int actual = radio.getCurrentVolume();
         assertEquals(expected, actual);
     }
 
     @Test
     void testPlusVolumeMax() {
-        service.setVolume(100);
-        service.plusVolume();
-        int expected = 100;
-        int actual = service.getCurrentVolume();
+        var radio = new Radio();
+        radio.setVolume(10);
+        radio.plusVolume();
+        int expected = 10;
+        int actual = radio.getCurrentVolume();
         assertEquals(expected, actual);
     }
-
     @Test
     void testPlusVolumeMoreMax() {
-        service.setVolume(123);
-        service.plusVolume();
+        var radio = new Radio();
+        radio.setVolume(123);
+        radio.plusVolume();
         int expected = 1;
-        int actual = service.getCurrentVolume();
+        int actual = radio.getCurrentVolume();
         assertEquals(expected, actual);
     }
 
     @Test
     void testMinusVolume() {
-        service.setVolume(5);
-        service.minusVolume();
+        var radio = new Radio();
+        radio.setVolume(5);
+        radio.minusVolume();
         int expected = 4;
-        int actual = service.getCurrentVolume();
+        int actual = radio.getCurrentVolume();
         assertEquals(expected, actual);
     }
-
     @Test
     void testMinusVolumeMin() {
-        service.minusVolume();
+        var radio = new Radio();
+        radio.minusVolume();
         int expected = 0;
-        int actual = service.getCurrentVolume();
+        int actual = radio.getCurrentVolume();
         assertEquals(expected, actual);
     }
-
     @Test
     void testMinusVolumeLessMin() {
-        service.setVolume(-123);
-        service.minusVolume();
+        var radio = new Radio();
+        radio.setVolume(-123);
+        radio.minusVolume();
         int expected = 0;
-        int actual = service.getCurrentVolume();
+        int actual = radio.getCurrentVolume();
         assertEquals(expected, actual);
     }
 }
